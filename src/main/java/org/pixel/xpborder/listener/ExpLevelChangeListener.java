@@ -20,7 +20,6 @@ public class ExpLevelChangeListener implements Listener {
         int lvl = event.getNewLevel();
         YamlConfiguration config = ch.getConfig();
         config.set("highestLevel", lvl);
-        ch.saveConfig(config);
 
         for (World world : Bukkit.getWorlds()) {
             WorldBorder border = world.getWorldBorder();
@@ -34,6 +33,8 @@ public class ExpLevelChangeListener implements Listener {
                 p.setLevel(lvl);
             }
         }
+
+        ch.saveConfig(config);
     }
 
 }

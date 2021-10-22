@@ -19,6 +19,7 @@ public class PlayerDeathListener implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         YamlConfiguration config = ch.getConfig();
         config.set("gameOver", true);
+        ch.saveConfig(config);
         Player p = event.getEntity();
         Bukkit.broadcastMessage(ChatColor.YELLOW + "----------------------------------------------------");
         Bukkit.broadcastMessage(ChatColor.RED + "" + ChatColor.BOLD + "Challenge vorbei – Defeat !");

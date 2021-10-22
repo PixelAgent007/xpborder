@@ -20,13 +20,13 @@ public class ExpChangeListener implements Listener {
         float xp = ep.getExp();
 
         config.set("xpAmount", xp);
-        ch.saveConfig(config);
 
         for (Player p : Bukkit.getOnlinePlayers()) {
             if (!(p == ep)) {
                 p.setExp(xp);
             }
         }
+        ch.saveConfig(config);
     }
 
 }
