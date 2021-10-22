@@ -1,0 +1,5 @@
+name: XpBorder
+version: '${version}'
+main: org.pixel.xpborder.Main
+api-version: 1.17
+authors: [ PixelAgent007 ]
