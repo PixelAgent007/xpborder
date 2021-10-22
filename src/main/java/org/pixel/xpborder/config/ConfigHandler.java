@@ -16,11 +16,17 @@ public class ConfigHandler {
     public YamlConfiguration getConfig() {
         return YamlConfiguration.loadConfiguration(this.getConfigAsFile());
     }
-    public void saveConfig() {
+    public void saveConfig(YamlConfiguration config) {
         try {
-            this.getConfig().save(this.getConfigAsFile());
+            config.save(this.getConfigAsFile());
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void setDefaults(YamlConfiguration config) {
+        if(!config.contains("highestLevel")) {config.set("highestLevel", 1);}
+        if(!config.contains("xpAmount")) {config.set("xpAmount", 0);}
+        if(!config.contains("gameOver")) {config.set("gameOver", false);}
+        this.saveConfig(config);
     }
 }

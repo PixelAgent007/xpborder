@@ -16,19 +16,16 @@ public class Main extends JavaPlugin {
 
     // Instancing Classes
     private final ConfigHandler ch = new ConfigHandler(this);
-    private final ExpChangeListener el = new ExpChangeListener(this);
-    private final ExpLevelChangeListener ell = new ExpLevelChangeListener(this);
-    private final JoinListener jl = new JoinListener(this);
-    private final PlayerDeathListener dl = new PlayerDeathListener(this);
-    private final PlayerDeathListener.PlayerRespawnListener rl = dl.new PlayerRespawnListener(this);
+    private final ExpChangeListener el = new ExpChangeListener(ch);
+    private final ExpLevelChangeListener ell = new ExpLevelChangeListener(ch);
+    private final JoinListener jl = new JoinListener(ch);
+    private final PlayerDeathListener dl = new PlayerDeathListener(ch);
+    private final PlayerDeathListener.PlayerRespawnListener rl = dl.new PlayerRespawnListener();
 
     @Override
     public void onEnable() {
         YamlConfiguration config = ch.getConfig();
-        if(!config.contains("highestLevel")) {config.set("highestLevel", 1);}
-        if(!config.contains("xpAmount")) {config.set("xpAmount", 0);}
-        if(!config.contains("gameOver")) {config.set("gameOver", false);}
-        ch.saveConfig();
+        config.setDefaults(config);
 
         for (World world : Bukkit.getWorlds()) {
             WorldBorder border = world.getWorldBorder();
